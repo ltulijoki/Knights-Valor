@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float jumpForce;
+    public LayerMask floorMask;
+    public float floorMaxDistance;
+
     private InputActions inputActions;
     private Animator animator;
+    private Rigidbody2D rb;
 
     void Awake()
     {
         inputActions = new InputActions();
         inputActions.Enable();
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
@@ -26,6 +32,15 @@ public class Player : MonoBehaviour
         if (inputActions.Player.Attack.WasPerformedThisFrame())
         {
             animator.SetTrigger("Attack");
+        }
+        if (inputActions.Player.Jump.WasPerformedThisFrame())
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, floorMaxDistance, floorMask);
+            if (hit)
+            {
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                animator.SetTrigger("Jump");
+            }
         }
     }
 }
