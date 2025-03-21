@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public float jumpForce;
     public LayerMask floorMask;
     public float floorMaxDistance;
+    public float speed;
 
     private InputActions inputActions;
     private Animator animator;
@@ -42,5 +43,6 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("Jump");
             }
         }
+        rb.AddForce(Vector2.right * inputActions.Player.Movement.ReadValue<float>() * speed * Time.deltaTime, ForceMode2D.Force);
     }
 }
