@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float dir = inputActions.Player.Movement.ReadValue<float>();
+        transform.Translate(Vector2.right * dir * speed * Time.deltaTime);
+        animator.SetBool("Run", dir != 0);
+
         if (inputActions.Player.Attack.WasPerformedThisFrame())
         {
             animator.SetTrigger("Attack");
@@ -43,6 +47,5 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("Jump");
             }
         }
-        rb.AddForce(Vector2.right * inputActions.Player.Movement.ReadValue<float>() * speed * Time.deltaTime, ForceMode2D.Force);
     }
 }
