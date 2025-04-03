@@ -2,23 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     public float jumpForce;
     public LayerMask floorMask;
     public float floorMaxDistance;
     public float speed;
+    public LayerMask enemyMask;
+    public float enemyMaxDistance;
 
     private InputActions inputActions;
-    private Animator animator;
-    private Rigidbody2D rb;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         inputActions = new InputActions();
         inputActions.Enable();
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
@@ -37,6 +36,12 @@ public class Player : MonoBehaviour
         if (inputActions.Player.Attack.WasPerformedThisFrame())
         {
             animator.SetTrigger("Attack");
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.up * 0.7f, Vector2.right, enemyMaxDistance, enemyMask);
+            if (hit)
+            {
+                Enemy enemy = hit.collider.GetComponent<Enemy>();
+                enemy.TakeDamage();
+            }
         }
         if (inputActions.Player.Jump.WasPerformedThisFrame())
         {
