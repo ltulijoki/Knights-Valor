@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player)
+        {
+            player.TakeDamage(damage, knockback, Vector2.left);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -40,7 +40,7 @@ public class Player : Entity
             if (hit)
             {
                 Enemy enemy = hit.collider.GetComponent<Enemy>();
-                enemy.TakeDamage();
+                enemy.TakeDamage(damage, knockback, Vector2.right);
             }
         }
         if (inputActions.Player.Jump.WasPerformedThisFrame())
