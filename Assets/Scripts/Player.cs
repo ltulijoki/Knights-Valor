@@ -7,7 +7,6 @@ public class Player : Entity
     public float jumpForce;
     public LayerMask floorMask;
     public float floorMaxDistance;
-    public float speed;
     public LayerMask enemyMask;
     public float enemyMaxDistance;
 
@@ -30,8 +29,7 @@ public class Player : Entity
     void Update()
     {
         float dir = inputActions.Player.Movement.ReadValue<float>();
-        transform.Translate(Vector2.right * dir * speed * Time.deltaTime);
-        animator.SetBool("Run", dir != 0);
+        Move(Vector2.right * dir * speed);
 
         if (inputActions.Player.Attack.WasPerformedThisFrame())
         {

@@ -7,6 +7,7 @@ public abstract class Entity : MonoBehaviour
     public float health;
     public float damage;
     public float knockback;
+    public float speed;
 
     private float currentHealth;
     protected Rigidbody2D rb;
@@ -32,5 +33,11 @@ public abstract class Entity : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    protected void Move(Vector2 movement)
+    {
+        transform.Translate(movement * Time.deltaTime);
+        animator.SetBool("Run", movement != Vector2.zero);
     }
 }

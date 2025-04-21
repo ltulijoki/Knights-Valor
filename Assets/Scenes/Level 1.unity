@@ -1788,12 +1788,12 @@ MonoBehaviour:
   health: 5
   damage: 1
   knockback: 1
+  speed: 5
   jumpForce: 5
   floorMask:
     serializedVersion: 2
     m_Bits: 64
   floorMaxDistance: 0.1
-  speed: 5
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
@@ -2268,6 +2268,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 755659742}
     m_Modifications:
+    - target: {fileID: 1435003305436383947, guid: 5785d5254f29c49828b3ada1dbbfeda8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1252119567}
     - target: {fileID: 2467695420071511566, guid: 5785d5254f29c49828b3ada1dbbfeda8, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -2850,13 +2854,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 755659742}
     m_Modifications:
+    - target: {fileID: 1435003305436383947, guid: 5785d5254f29c49828b3ada1dbbfeda8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1252119567}
     - target: {fileID: 2467695420071511566, guid: 5785d5254f29c49828b3ada1dbbfeda8, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2646501767069552397, guid: 5785d5254f29c49828b3ada1dbbfeda8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 3.75
       objectReference: {fileID: 0}
     - target: {fileID: 2646501767069552397, guid: 5785d5254f29c49828b3ada1dbbfeda8, type: 3}
       propertyPath: m_LocalPosition.y
