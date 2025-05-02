@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : Entity
@@ -9,8 +10,11 @@ public class Player : Entity
     public float floorMaxDistance;
     public LayerMask enemyMask;
     public float enemyMaxDistance;
+    public TextMeshProUGUI coinsText;
+    public TextMeshProUGUI healthText;
 
     private InputActions inputActions;
+    private int coins;
 
     protected override void Awake()
     {
@@ -22,7 +26,18 @@ public class Player : Entity
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthText.text = health.ToString();
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Coin coin = collision.gameObject.GetComponent<Coin>();
+        if (coin)
+        {
+            coins += coin.value;
+            coinsText.text = coins.ToString();
+            Destroy(coin.gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -50,5 +65,11 @@ public class Player : Entity
                 animator.SetTrigger("Jump");
             }
         }
+    }
+
+    public override void TakeDamage(float amount, float knockbackAmount, Vector2 knockbackDirection)
+    {
+        base.TakeDamage(amount, knockbackAmount, knockbackDirection);
+        healthText.text = currentHealth.ToString();
     }
 }

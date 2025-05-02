@@ -9,7 +9,7 @@ public abstract class Entity : MonoBehaviour
     public float knockback;
     public float speed;
 
-    private float currentHealth;
+    protected float currentHealth;
     protected Rigidbody2D rb;
     protected Animator animator;
 
@@ -20,7 +20,7 @@ public abstract class Entity : MonoBehaviour
         currentHealth = health;
     }
 
-    public void TakeDamage(float amount, float knockbackAmount, Vector2 knockbackDirection)
+    public virtual void TakeDamage(float amount, float knockbackAmount, Vector2 knockbackDirection)
     {
         currentHealth -= amount;
         transform.Translate(knockbackDirection * knockbackAmount);
@@ -30,7 +30,7 @@ public abstract class Entity : MonoBehaviour
             animator.SetTrigger("Hurt");
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Destroy(gameObject);
     }

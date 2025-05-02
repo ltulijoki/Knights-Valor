@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+    public Coin coin;
+    public int drop;
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
@@ -23,5 +26,12 @@ public class Enemy : Entity
     void Update()
     {
         
+    }
+
+    public override void Die()
+    {
+        Coin coin = Instantiate(this.coin, transform.position, Quaternion.identity);
+        coin.value = drop;
+        base.Die();
     }
 }
