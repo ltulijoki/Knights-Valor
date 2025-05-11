@@ -11,11 +11,14 @@ public abstract class Entity : MonoBehaviour
 
     protected float currentHealth;
     protected Rigidbody2D rb;
+    protected Collider2D col;
     protected Animator animator;
+    protected bool dying = false;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         currentHealth = health;
     }
@@ -25,7 +28,12 @@ public abstract class Entity : MonoBehaviour
         currentHealth -= amount;
         transform.Translate(knockbackDirection * knockbackAmount);
         if (currentHealth <= 0)
+        {
+            dying = true;
+            col.enabled = false;
+            rb.isKinematic = true;
             animator.SetTrigger("Die");
+        }
         else
             animator.SetTrigger("Hurt");
     }
@@ -37,6 +45,11 @@ public abstract class Entity : MonoBehaviour
 
     protected void Move(Vector2 movement)
     {
+        if (dying) 
+        {
+            animator.SetBool("Run", false);
+            return;
+        }
         transform.Translate(movement * Time.deltaTime);
         animator.SetBool("Run", movement != Vector2.zero);
     }

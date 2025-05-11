@@ -46,7 +46,7 @@ public class Player : Entity
         float dir = inputActions.Player.Movement.ReadValue<float>();
         Move(Vector2.right * dir * speed);
 
-        if (inputActions.Player.Attack.WasPerformedThisFrame())
+        if (inputActions.Player.Attack.WasPerformedThisFrame() && !dying)
         {
             animator.SetTrigger("Attack");
             RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.up * 0.7f, Vector2.right, enemyMaxDistance, enemyMask);
@@ -56,7 +56,7 @@ public class Player : Entity
                 enemy.TakeDamage(damage, knockback, Vector2.right);
             }
         }
-        if (inputActions.Player.Jump.WasPerformedThisFrame())
+        if (inputActions.Player.Jump.WasPerformedThisFrame() && !dying)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, floorMaxDistance, floorMask);
             if (hit)
