@@ -8,10 +8,13 @@ public abstract class Entity : MonoBehaviour
     public float damage;
     public float knockback;
     public float speed;
+    public bool looksLeft;
 
     protected float currentHealth;
+    protected int dir = 1;
     protected Rigidbody2D rb;
     protected Collider2D col;
+    protected SpriteRenderer sr;
     protected Animator animator;
     protected bool dying = false;
 
@@ -19,6 +22,7 @@ public abstract class Entity : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         currentHealth = health;
     }
@@ -45,10 +49,20 @@ public abstract class Entity : MonoBehaviour
 
     protected void Move(Vector2 movement)
     {
-        if (dying) 
+        if (dying)
         {
             animator.SetBool("Run", false);
             return;
+        }
+        if (movement.x > 0)
+        {
+            dir = 1;
+            sr.flipX = looksLeft;
+        }
+        else if (movement.x < 0)
+        {
+            dir = -1;
+            sr.flipX = !looksLeft;
         }
         transform.Translate(movement * Time.deltaTime);
         animator.SetBool("Run", movement != Vector2.zero);

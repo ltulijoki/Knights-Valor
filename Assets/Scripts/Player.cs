@@ -49,7 +49,7 @@ public class Player : Entity
         if (inputActions.Player.Attack.WasPerformedThisFrame() && !dying)
         {
             animator.SetTrigger("Attack");
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.up * 0.7f, Vector2.right, enemyMaxDistance, enemyMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.up * 0.7f, Vector2.right * this.dir, enemyMaxDistance, enemyMask);
             if (hit)
             {
                 Enemy enemy = hit.collider.GetComponent<Enemy>();
