@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ public class Player : Entity
     public float enemyMaxDistance;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI healthText;
+    public GameObject stats;
+    public GameObject gameOverScreen;
+    public TextMeshProUGUI gameOverCoinsText;
 
     private InputActions inputActions;
     private int coins;
@@ -71,5 +75,13 @@ public class Player : Entity
     {
         base.TakeDamage(amount, knockbackAmount, knockbackDirection);
         healthText.text = currentHealth.ToString();
+    }
+
+    public override void Die()
+    {
+        stats.SetActive(false);
+        gameOverScreen.SetActive(true);
+        gameOverCoinsText.text = coins.ToString();
+        base.Die();
     }
 }

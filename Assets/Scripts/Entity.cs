@@ -31,15 +31,19 @@ public abstract class Entity : MonoBehaviour
     {
         currentHealth -= amount;
         transform.Translate(knockbackDirection * knockbackAmount);
+        animator.SetTrigger("Hurt");
         if (currentHealth <= 0)
         {
             dying = true;
             col.enabled = false;
             rb.isKinematic = true;
-            animator.SetTrigger("Die");
+            Invoke("StartDying", 0.25f);
         }
-        else
-            animator.SetTrigger("Hurt");
+    }
+
+    public void StartDying()
+    {
+        animator.SetTrigger("Die");
     }
 
     public virtual void Die()
