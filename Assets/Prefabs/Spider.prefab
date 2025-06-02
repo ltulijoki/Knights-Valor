@@ -241,7 +241,7 @@ MonoBehaviour:
   health: 1
   damage: 1
   knockback: 1
-  speed: 1
+  speed: 2
   looksLeft: 1
   coin: {fileID: 0}
   drop: 0
