@@ -9,6 +9,8 @@ public abstract class Entity : MonoBehaviour
     public float knockback;
     public float speed;
     public bool looksLeft;
+    public Fire fire;
+    public Transform firePosition;
 
     protected float currentHealth;
     protected int dir = 1;
@@ -70,5 +72,10 @@ public abstract class Entity : MonoBehaviour
         }
         transform.Translate(movement * Time.deltaTime);
         animator.SetBool("Run", movement != Vector2.zero);
+    }
+
+    protected void Fire()
+    {
+        Instantiate(fire, firePosition.position, dir < 0 ? Quaternion.Euler(Vector3.forward * 180) : Quaternion.identity);
     }
 }

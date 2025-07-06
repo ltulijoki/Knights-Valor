@@ -9,10 +9,10 @@ public class Fire : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player)
+        Entity entity = collision.gameObject.GetComponent<Entity>();
+        if (entity)
         {
-            player.TakeDamage(damage, 0, Vector2.left);
+            entity.TakeDamage(damage, 0, Vector2.left);
         }
 
         Destroy(gameObject);

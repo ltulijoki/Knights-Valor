@@ -14,9 +14,9 @@ TagManager:
   - Floor
   - Enemy
   - Item
-  - Fire
+  - Enemy fire
   - Chest
-  - 
+  - Player fire
   - 
   - 
   - 

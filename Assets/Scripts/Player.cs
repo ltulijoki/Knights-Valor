@@ -13,12 +13,14 @@ public class Player : Entity
     public float enemyMaxDistance;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI shotsText;
     public GameObject stats;
     public GameObject gameOverScreen;
     public TextMeshProUGUI gameOverCoinsText;
 
     private InputActions inputActions;
     private int coins;
+    private int shots;
 
     protected override void Awake()
     {
@@ -68,6 +70,12 @@ public class Player : Entity
                 animator.SetTrigger("Jump");
             }
         }
+        if (inputActions.Player.Fire.WasPerformedThisFrame() && shots > 0 && !dying)
+        {
+            Fire();
+            shots--;
+            shotsText.text = shots.ToString();
+        }
     }
 
     public override void TakeDamage(float amount, float knockbackAmount, Vector2 knockbackDirection)
@@ -94,5 +102,11 @@ public class Player : Entity
     {
         currentHealth = health;
         healthText.text = currentHealth.ToString();
+    }
+
+    public void AddShots(int amount)
+    {
+        shots += amount;
+        shotsText.text = shots.ToString();
     }
 }
