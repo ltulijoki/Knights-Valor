@@ -56,7 +56,7 @@ public class Player : Entity
             RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.up * 0.7f, Vector2.right * this.dir, enemyMaxDistance, enemyMask);
             if (hit)
             {
-                Enemy enemy = hit.collider.GetComponent<Enemy>();
+                Entity enemy = hit.collider.GetComponent<Entity>();
                 enemy.TakeDamage(damage, knockback, Vector2.right);
             }
         }
