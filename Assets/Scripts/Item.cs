@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : Item
+public abstract class Item : MonoBehaviour
 {
-    public int value;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +16,5 @@ public class Coin : Item
 
     }
 
-    public override void Pick(Player player)
-    {
-        player.AddCoins(value);
-    }
+    public abstract void Pick(Player player);
 }

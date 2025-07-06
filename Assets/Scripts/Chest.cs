@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Chest : Entity
 {
-    public GameObject content;
+    public GameObject[] content;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,8 @@ public class Chest : Entity
     
     public override void Die()
     {
-        Instantiate(content, transform.position, Quaternion.identity);
+        
+        Instantiate(content[Random.Range(0, content.Length)], transform.position, Quaternion.identity);
         base.Die();
     }
 }

@@ -35,12 +35,11 @@ public class Player : Entity
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Coin coin = collision.gameObject.GetComponent<Coin>();
-        if (coin)
+        Item item = collision.gameObject.GetComponent<Item>();
+        if (item)
         {
-            coins += coin.value;
-            coinsText.text = coins.ToString();
-            Destroy(coin.gameObject);
+            item.Pick(this);
+            Destroy(item.gameObject);
         }
     }
 
@@ -83,5 +82,17 @@ public class Player : Entity
         gameOverScreen.SetActive(true);
         gameOverCoinsText.text = coins.ToString();
         base.Die();
+    }
+
+    public void AddCoins(int amount)
+    {
+        coins += amount;
+        coinsText.text = coins.ToString();
+    }
+
+    public void Heal()
+    {
+        currentHealth = health;
+        healthText.text = currentHealth.ToString();
     }
 }

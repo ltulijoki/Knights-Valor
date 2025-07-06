@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : Item
+public class PotionRed : Item
 {
-    public int value;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +18,6 @@ public class Coin : Item
 
     public override void Pick(Player player)
     {
-        player.AddCoins(value);
+        player.Heal();
     }
 }
