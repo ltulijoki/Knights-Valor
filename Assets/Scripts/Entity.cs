@@ -75,6 +75,7 @@ public abstract class Entity : MonoBehaviour
 
     protected void Fire()
     {
+        if (dying) return;
         Instantiate(fire, firePosition.position, dir < 0 ? Quaternion.Euler(Vector3.forward * 180) : Quaternion.identity);
     }
 }
