@@ -37,8 +37,7 @@ public abstract class Entity : MonoBehaviour
         if (currentHealth <= 0)
         {
             dying = true;
-            col.enabled = false;
-            rb.isKinematic = true;
+            gameObject.layer = LayerMask.NameToLayer("Dying");
             Invoke("StartDying", 0.25f);
         }
     }
