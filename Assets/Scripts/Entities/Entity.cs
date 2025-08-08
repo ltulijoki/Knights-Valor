@@ -45,6 +45,7 @@ public abstract class Entity : MonoBehaviour
     public void StartDying()
     {
         animator.SetTrigger("Die");
+        Invoke("Die", 1);
     }
 
     public virtual void Die()

@@ -58,7 +58,7 @@ public class Player : Entity
             if (hit)
             {
                 Entity enemy = hit.collider.GetComponent<Entity>();
-                enemy.TakeDamage(damage, knockback, Vector2.right);
+                enemy.TakeDamage(damage, knockback, hit.transform.position.x - transform.position.x > 0 ? Vector2.right : Vector2.left);
             }
         }
         if (inputActions.Player.Jump.WasPerformedThisFrame() && !dying)

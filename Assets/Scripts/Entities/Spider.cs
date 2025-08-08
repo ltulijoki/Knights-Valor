@@ -7,7 +7,7 @@ public class Spider : Enemy
     public Transform top;
     public Transform bottom;
 
-    private float direction = 1;
+    private int direction = 1;
 
     // Start is called before the first frame update
     void Start()

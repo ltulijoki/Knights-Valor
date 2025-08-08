@@ -77,7 +77,6 @@ GameObject:
   - component: {fileID: 6746258754767344435}
   - component: {fileID: 186903990520390846}
   - component: {fileID: 5447319401186580777}
-  - component: {fileID: 2281899113683754936}
   - component: {fileID: 7589267694744627792}
   - component: {fileID: 8251414699972604868}
   m_Layer: 7
@@ -226,25 +225,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2281899113683754936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5700838646365780722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 769df88d575554ff3bbd07d5390b1d47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  damage: 1
-  knockback: 1
-  speed: 2
-  looksLeft: 1
-  coin: {fileID: 0}
-  drop: 0
 --- !u!95 &7589267694744627792
 Animator:
   serializedVersion: 5
@@ -283,8 +263,9 @@ MonoBehaviour:
   knockback: 1
   speed: 1
   looksLeft: 0
+  fire: {fileID: 0}
+  firePosition: {fileID: 0}
   coin: {fileID: 5226047471322243840, guid: da634d07e72454a389c27b4b575128bb, type: 3}
-  drop: 5
   top: {fileID: 5513935081235625849}
   bottom: {fileID: 6944902546681595288}
 --- !u!1 &6670796012022257417
