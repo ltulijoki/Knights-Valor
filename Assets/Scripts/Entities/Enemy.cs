@@ -6,7 +6,7 @@ public class Enemy : Entity
 {
     public Coin coin;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();
         if (player)
@@ -29,7 +29,7 @@ public class Enemy : Entity
 
     public override void Die()
     {
-        Instantiate(this.coin, transform.position, Quaternion.identity);
+        Instantiate(coin, transform.position, Quaternion.identity);
         base.Die();
     }
 }
