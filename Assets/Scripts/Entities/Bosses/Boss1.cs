@@ -39,7 +39,6 @@ public class Boss1 : Enemy
         {
             attacking = true;
             animator.SetBool("Attack", true);
-            Debug.Log(attackingSpeed / attackDistance);
             Invoke("StopAttacking", attackDistance / attackingSpeed);
         }
     }

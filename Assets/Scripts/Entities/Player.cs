@@ -19,8 +19,7 @@ public class Player : Entity
     public TextMeshProUGUI gameOverCoinsText;
 
     private InputActions inputActions;
-    private int coins;
-    private int shots;
+    private PlayerStats pStats;
 
     protected override void Awake()
     {
@@ -32,7 +31,13 @@ public class Player : Entity
     // Start is called before the first frame update
     void Start()
     {
+        pStats = PlayerStats.Instance;
+        currentHealth = pStats.health;
         healthText.text = health.ToString();
+        coinsText.text = pStats.coins.ToString();
+        shotsText.text = pStats.shots.ToString();
+        if (pStats.health <= 0) currentHealth = health;
+        HealthChanged();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -70,11 +75,11 @@ public class Player : Entity
                 animator.SetTrigger("Jump");
             }
         }
-        if (inputActions.Player.Fire.WasPerformedThisFrame() && shots > 0 && !dying)
+        if (inputActions.Player.Fire.WasPerformedThisFrame() && pStats.shots > 0 && !dying)
         {
             Fire();
-            shots--;
-            shotsText.text = shots.ToString();
+            pStats.shots--;
+            shotsText.text = pStats.shots.ToString();
         }
     }
 
@@ -88,25 +93,31 @@ public class Player : Entity
     {
         stats.SetActive(false);
         gameOverScreen.SetActive(true);
-        gameOverCoinsText.text = coins.ToString();
+        gameOverCoinsText.text = pStats.coins.ToString();
         base.Die();
     }
 
     public void AddCoins(int amount)
     {
-        coins += amount;
-        coinsText.text = coins.ToString();
+        pStats.coins += amount;
+        coinsText.text = pStats.coins.ToString();
     }
 
     public void Heal()
     {
         currentHealth = health;
+        HealthChanged();
         healthText.text = currentHealth.ToString();
     }
 
     public void AddShots(int amount)
     {
-        shots += amount;
-        shotsText.text = shots.ToString();
+        pStats.shots += amount;
+        shotsText.text = pStats.shots.ToString();
+    }
+
+    protected override void HealthChanged()
+    {
+        pStats.health = currentHealth;
     }
 }

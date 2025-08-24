@@ -32,6 +32,7 @@ public abstract class Entity : MonoBehaviour
     public virtual void TakeDamage(float amount, float knockbackAmount, Vector2 knockbackDirection)
     {
         currentHealth -= amount;
+        HealthChanged();
         transform.Translate(knockbackDirection * knockbackAmount);
         animator.SetTrigger("Hurt");
         if (currentHealth <= 0)
@@ -79,4 +80,6 @@ public abstract class Entity : MonoBehaviour
         if (dying) return;
         Instantiate(fire, firePosition.position, dir < 0 ? Quaternion.Euler(Vector3.forward * 180) : Quaternion.identity);
     }
+
+    protected virtual void HealthChanged() {}
 }
