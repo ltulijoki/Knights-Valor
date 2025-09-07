@@ -20533,12 +20533,12 @@ PrefabInstance:
       objectReference: {fileID: 7027901376317326039, guid: 93e20976388e84b028953e3c1b0c13c0, type: 3}
     - target: {fileID: 191622380555713929, guid: a43f9a601e4344b5796100b738babbb0, type: 3}
       propertyPath: content.Array.size
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 191622380555713929, guid: a43f9a601e4344b5796100b738babbb0, type: 3}
       propertyPath: content.Array.data[0]
       value: 
-      objectReference: {fileID: 7027901376317326039, guid: 93e20976388e84b028953e3c1b0c13c0, type: 3}
+      objectReference: {fileID: 415346665706243240, guid: 0bc1a3aba46e045e8ac6801d06ef562a, type: 3}
     - target: {fileID: 191622380555713929, guid: a43f9a601e4344b5796100b738babbb0, type: 3}
       propertyPath: content.Array.data[1]
       value: 

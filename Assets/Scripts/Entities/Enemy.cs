@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    public Coin coin;
+    public Item drop;
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -29,7 +29,7 @@ public class Enemy : Entity
 
     public override void Die()
     {
-        Instantiate(coin, transform.position, Quaternion.identity);
+        Instantiate(drop, transform.position, Quaternion.identity);
         base.Die();
     }
 }

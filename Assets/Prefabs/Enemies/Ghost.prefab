@@ -198,6 +198,7 @@ MonoBehaviour:
   knockback: 1
   speed: 3
   looksLeft: 1
-  coin: {fileID: 5226047471322243840, guid: 633cabc562e404692b7adea5f94d2339, type: 3}
-  drop: 10
+  fire: {fileID: 0}
+  firePosition: {fileID: 0}
+  drop: {fileID: 5226047471322243840, guid: 633cabc562e404692b7adea5f94d2339, type: 3}
   player: {fileID: 0}

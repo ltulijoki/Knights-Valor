@@ -265,7 +265,7 @@ MonoBehaviour:
   looksLeft: 0
   fire: {fileID: 0}
   firePosition: {fileID: 0}
-  coin: {fileID: 5226047471322243840, guid: da634d07e72454a389c27b4b575128bb, type: 3}
+  drop: {fileID: 5226047471322243840, guid: da634d07e72454a389c27b4b575128bb, type: 3}
   top: {fileID: 5513935081235625849}
   bottom: {fileID: 6944902546681595288}
 --- !u!1 &6670796012022257417

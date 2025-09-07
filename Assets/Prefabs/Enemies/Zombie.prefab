@@ -201,7 +201,7 @@ MonoBehaviour:
   looksLeft: 1
   fire: {fileID: -7325648314230893727, guid: f8f0f72347a074b3ebb93826db0b4f0d, type: 3}
   firePosition: {fileID: 1945847459713294428}
-  coin: {fileID: 5226047471322243840, guid: 93e20976388e84b028953e3c1b0c13c0, type: 3}
+  drop: {fileID: 5226047471322243840, guid: 93e20976388e84b028953e3c1b0c13c0, type: 3}
   player: {fileID: 0}
   fireFrequency: 3
 --- !u!1 &6426089530302961566

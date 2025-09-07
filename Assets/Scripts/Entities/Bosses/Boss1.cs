@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss1 : Enemy
+public class Boss1 : Boss
 {
     public Transform left;
     public Transform right;
@@ -62,6 +62,5 @@ public class Boss1 : Enemy
     public override void TakeDamage(float amount, float knockbackAmount, Vector2 knockbackDirection)
     {
         base.TakeDamage(amount, knockbackAmount, knockbackDirection);
-        // hurt = true;
     }
 }
