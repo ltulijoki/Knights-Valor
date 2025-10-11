@@ -235,12 +235,18 @@ MonoBehaviour:
   jumpForce: 8
   floorMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 49216
   floorMaxDistance: 0.1
   enemyMask:
     serializedVersion: 2
     m_Bits: 1152
   enemyMaxDistance: 2
+  lopsidedFloorMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  oppositeLopsidedFloorMask:
+    serializedVersion: 2
+    m_Bits: 32768
   coinsText: {fileID: 0}
   healthText: {fileID: 0}
   shotsText: {fileID: 0}

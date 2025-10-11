@@ -11,6 +11,8 @@ public class Player : Entity
     public float floorMaxDistance;
     public LayerMask enemyMask;
     public float enemyMaxDistance;
+    public LayerMask lopsidedFloorMask;
+    public LayerMask oppositeLopsidedFloorMask;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI shotsText;
@@ -60,10 +62,15 @@ public class Player : Entity
         {
             animator.SetTrigger("Attack");
             RaycastHit2D hit = Physics2D.Raycast(transform.position + Vector3.up * 0.7f, Vector2.right * this.dir, enemyMaxDistance, enemyMask);
+            if (!hit)
+                hit = Physics2D.Raycast(transform.position + Vector3.up * 0.1f, Vector2.right * this.dir, enemyMaxDistance, enemyMask);
             if (hit)
             {
                 Entity enemy = hit.collider.GetComponent<Entity>();
-                enemy.TakeDamage(damage, knockback, hit.transform.position.x - transform.position.x > 0 ? Vector2.right : Vector2.left);
+                if (enemy is Scorpion scorpion && scorpion.isAttacking)
+                    TakeDamage(scorpion.damage, scorpion.knockback, hit.transform.position.x - transform.position.x > 0 ? Vector2.left : Vector2.right);
+                else
+                    enemy.TakeDamage(damage, knockback, hit.transform.position.x - transform.position.x > 0 ? Vector2.right : Vector2.left);
             }
         }
         if (inputActions.Player.Jump.WasPerformedThisFrame() && !dying)
@@ -80,6 +87,13 @@ public class Player : Entity
             Fire();
             pStats.shots--;
             shotsText.text = pStats.shots.ToString();
+        }
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, lopsidedFloorMask);
+            RaycastHit2D oppositeHit = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, oppositeLopsidedFloorMask);
+            if (hit) transform.rotation = Quaternion.Euler(Vector3.forward * 45);
+            else if (oppositeHit) transform.rotation = Quaternion.Euler(Vector3.back * 45);
+            else transform.rotation = Quaternion.identity;
         }
     }
 
