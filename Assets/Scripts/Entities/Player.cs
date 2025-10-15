@@ -40,6 +40,7 @@ public class Player : Entity
         shotsText.text = pStats.shots.ToString();
         if (pStats.health <= 0) currentHealth = health;
         HealthChanged();
+        healthText.text = currentHealth.ToString();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
