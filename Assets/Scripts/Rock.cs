@@ -5,11 +5,12 @@ using UnityEngine;
 public class Rock : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private bool rolling = false;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         Entity entity = collision.gameObject.GetComponent<Entity>();
-        if (entity)
+        if (entity && rolling)
         {
             entity.StartDying();
         }
@@ -17,7 +18,8 @@ public class Rock : MonoBehaviour
 
     public void StartRolling()
     {
-        rb.gravityScale = 1;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rolling = true;
     }
 
     // Start is called before the first frame update
