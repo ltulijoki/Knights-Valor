@@ -40,8 +40,8 @@ public abstract class Entity : MonoBehaviour
         Vector2 forward = dir > 0 ? Vector2.right : Vector2.left;
         hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, lopsidedFloorMask);
         if (!hit) hit = Physics2D.Raycast(transform.position, forward, 1.5f, lopsidedFloorMask);
-        oppositeHit = Physics2D.Raycast(transform.position, forward, 1.5f, oppositeLopsidedFloorMask);
-        if (!oppositeHit) oppositeHit = Physics2D.Raycast(transform.position, Vector2.right, 1.5f, oppositeLopsidedFloorMask);
+        oppositeHit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, oppositeLopsidedFloorMask);
+        if (!oppositeHit) oppositeHit = Physics2D.Raycast(transform.position, forward, 1.5f, oppositeLopsidedFloorMask);
         if (hit) transform.rotation = Quaternion.Euler(Vector3.forward * 45);
         else if (oppositeHit) transform.rotation = Quaternion.Euler(Vector3.back * 45);
         else transform.rotation = Quaternion.identity;
