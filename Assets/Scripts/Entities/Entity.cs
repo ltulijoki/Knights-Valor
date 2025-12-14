@@ -11,6 +11,10 @@ public abstract class Entity : MonoBehaviour
     public bool looksLeft;
     public Fire fire;
     public Transform firePosition;
+    public LayerMask lopsidedFloorMask;
+    public LayerMask oppositeLopsidedFloorMask;
+    public float uphillMultiplier = 1;
+    public float downhillMultiplier = 1;
 
     protected float currentHealth;
     protected int dir = 1;
@@ -19,6 +23,8 @@ public abstract class Entity : MonoBehaviour
     protected SpriteRenderer sr;
     protected Animator animator;
     protected bool dying = false;
+    private RaycastHit2D hit;
+    private RaycastHit2D oppositeHit;
 
     protected virtual void Awake()
     {
@@ -27,6 +33,18 @@ public abstract class Entity : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         currentHealth = health;
+    }
+
+    void LateUpdate()
+    {
+        Vector2 forward = dir > 0 ? Vector2.right : Vector2.left;
+        hit = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, lopsidedFloorMask);
+        if (!hit) hit = Physics2D.Raycast(transform.position, forward, 1.5f, lopsidedFloorMask);
+        oppositeHit = Physics2D.Raycast(transform.position, forward, 1.5f, oppositeLopsidedFloorMask);
+        if (!oppositeHit) oppositeHit = Physics2D.Raycast(transform.position, Vector2.right, 1.5f, oppositeLopsidedFloorMask);
+        if (hit) transform.rotation = Quaternion.Euler(Vector3.forward * 45);
+        else if (oppositeHit) transform.rotation = Quaternion.Euler(Vector3.back * 45);
+        else transform.rotation = Quaternion.identity;
     }
 
     public virtual void TakeDamage(float amount, float knockbackAmount, Vector2 knockbackDirection)
@@ -71,6 +89,10 @@ public abstract class Entity : MonoBehaviour
             dir = -1;
             sr.flipX = !looksLeft;
         }
+
+        if ((hit && dir > 0) || (oppositeHit && dir < 0)) movement *= uphillMultiplier;
+        if ((hit && dir < 0) || (oppositeHit && dir > 0)) movement /= downhillMultiplier;
+
         transform.Translate(movement * Time.deltaTime);
         animator.SetBool("Run", movement != Vector2.zero);
     }

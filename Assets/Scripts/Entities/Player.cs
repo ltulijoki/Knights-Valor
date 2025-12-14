@@ -11,8 +11,6 @@ public class Player : Entity
     public float floorMaxDistance;
     public LayerMask enemyMask;
     public float enemyMaxDistance;
-    public LayerMask lopsidedFloorMask;
-    public LayerMask oppositeLopsidedFloorMask;
     public TextMeshProUGUI coinsText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI shotsText;
@@ -88,13 +86,6 @@ public class Player : Entity
             Fire();
             pStats.shots--;
             shotsText.text = pStats.shots.ToString();
-        }
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, lopsidedFloorMask);
-            RaycastHit2D oppositeHit = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, oppositeLopsidedFloorMask);
-            if (hit) transform.rotation = Quaternion.Euler(Vector3.forward * 45);
-            else if (oppositeHit) transform.rotation = Quaternion.Euler(Vector3.back * 45);
-            else transform.rotation = Quaternion.identity;
         }
     }
 

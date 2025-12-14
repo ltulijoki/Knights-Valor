@@ -159,7 +159,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &5308752483641009617
 Animator:
   serializedVersion: 5
@@ -196,9 +196,19 @@ MonoBehaviour:
   health: 1
   damage: 2
   knockback: 1
-  speed: 0
+  speed: 1
   looksLeft: 1
   fire: {fileID: 0}
   firePosition: {fileID: 0}
+  lopsidedFloorMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  oppositeLopsidedFloorMask:
+    serializedVersion: 2
+    m_Bits: 32768
+  uphillMultiplier: 8
+  downhillMultiplier: 0.1
   drop: {fileID: 5226047471322243840, guid: 93e20976388e84b028953e3c1b0c13c0, type: 3}
+  player: {fileID: 0}
+  maxDistanceToPlayer: 0.1
   attackFrequency: 2
