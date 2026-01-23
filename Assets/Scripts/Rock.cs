@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private bool rolling = false;
+    protected Rigidbody2D rb;
+    protected bool rolling = false;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         Entity entity = collision.gameObject.GetComponent<Entity>();
         if (entity && rolling)
@@ -23,7 +23,7 @@ public class Rock : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }

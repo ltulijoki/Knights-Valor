@@ -18,13 +18,13 @@ public class Boss1 : Boss
     private bool attacking;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         InvokeRepeating("Jump", jumpFrequency, jumpFrequency);
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (hurt) return;
         Move(Vector2.right * direction * (attacking ? attackingSpeed : speed));
@@ -43,7 +43,7 @@ public class Boss1 : Boss
         }
     }
 
-    void Jump()
+    protected virtual void Jump()
     {
         if (hurt || attacking) return;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, floorMaxDistance, floorMask);
