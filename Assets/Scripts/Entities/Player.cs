@@ -17,6 +17,7 @@ public class Player : Entity
     public GameObject stats;
     public GameObject gameOverScreen;
     public TextMeshProUGUI gameOverCoinsText;
+    public float waterJumpMultiplier = 1;
 
     private InputActions inputActions;
     private PlayerStats pStats;
@@ -77,7 +78,8 @@ public class Player : Entity
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, floorMaxDistance, floorMask);
             if (hit)
             {
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                float force = inWater > 0 ? jumpForce * waterJumpMultiplier : jumpForce;
+                rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
                 animator.SetTrigger("Jump");
             }
         }

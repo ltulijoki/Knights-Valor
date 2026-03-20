@@ -13,8 +13,10 @@ public abstract class Entity : MonoBehaviour
     public Transform firePosition;
     public LayerMask lopsidedFloorMask;
     public LayerMask oppositeLopsidedFloorMask;
+    public LayerMask waterMask;
     public float uphillMultiplier = 1;
     public float downhillMultiplier = 1;
+    public float waterMultiplier = 1;
 
     protected float currentHealth;
     protected int dir = 1;
@@ -25,6 +27,17 @@ public abstract class Entity : MonoBehaviour
     protected bool dying = false;
     private RaycastHit2D hit;
     private RaycastHit2D oppositeHit;
+    protected int inWater = 0;
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if ((waterMask & (1 << collision.gameObject.layer)) != 0) inWater++;
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if ((waterMask & (1 << collision.gameObject.layer)) != 0) inWater--;
+    }
 
     protected virtual void Awake()
     {
@@ -92,6 +105,8 @@ public abstract class Entity : MonoBehaviour
 
         if ((hit && dir > 0) || (oppositeHit && dir < 0)) movement *= uphillMultiplier;
         if ((hit && dir < 0) || (oppositeHit && dir > 0)) movement /= downhillMultiplier;
+        
+        if (inWater > 0) movement *= waterMultiplier;
 
         transform.Translate(movement * Time.deltaTime);
         animator.SetBool("Run", movement != Vector2.zero);
