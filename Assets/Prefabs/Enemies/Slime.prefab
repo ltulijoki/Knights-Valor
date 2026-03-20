@@ -196,7 +196,7 @@ MonoBehaviour:
   health: 1
   damage: 2
   knockback: 1
-  speed: 0.5
+  speed: 1
   looksLeft: 0
   fire: {fileID: 0}
   firePosition: {fileID: 0}
@@ -211,6 +211,6 @@ MonoBehaviour:
     m_Bits: 16
   uphillMultiplier: 1
   downhillMultiplier: 1
-  waterMultiplier: 3
+  waterMultiplier: 1.5
   drop: {fileID: 5226047471322243840, guid: 93e20976388e84b028953e3c1b0c13c0, type: 3}
   player: {fileID: 0}
