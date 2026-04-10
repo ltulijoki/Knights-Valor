@@ -6019,6 +6019,7 @@ MonoBehaviour:
   entity: {fileID: 5708982737246786531, guid: 5a90412c5de4246649608dcd413926f3, type: 3}
   player: {fileID: 1252119567}
   delay: 5
+  limit: 5
 --- !u!1 &1047832862
 GameObject:
   m_ObjectHideFlags: 0
