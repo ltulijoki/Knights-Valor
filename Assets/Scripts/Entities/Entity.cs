@@ -17,6 +17,7 @@ public abstract class Entity : MonoBehaviour
     public float uphillMultiplier = 1;
     public float downhillMultiplier = 1;
     public float waterMultiplier = 1;
+    public bool canMove = true;
 
     protected float currentHealth;
     protected int dir = 1;
@@ -87,7 +88,7 @@ public abstract class Entity : MonoBehaviour
 
     protected void Move(Vector2 movement)
     {
-        if (dying)
+        if (dying || !canMove)
         {
             animator.SetBool("Run", false);
             return;
@@ -119,4 +120,9 @@ public abstract class Entity : MonoBehaviour
     }
 
     protected virtual void HealthChanged() {}
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+    }
 }

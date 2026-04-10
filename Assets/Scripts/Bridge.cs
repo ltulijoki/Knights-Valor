@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Bridge : MonoBehaviour
 {
     public float time;
     public LayerMask spikesMask;
+    public UnityEvent whenWalking;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -19,6 +21,7 @@ public class Bridge : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Player>())
         {
+            whenWalking.Invoke();
             Invoke("Fall", time);
         }
         if (( spikesMask & (1 << other.gameObject.layer)) != 0)
